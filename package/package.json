@@ -1,0 +1,20 @@
+{
+  "name": "rebst",
+  "version": "1.0.2",
+  "description": "A simple way to create standardized responses for remaining APIs that work with Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "rest",
+    "response"
+  ],
+  "author": "marius.brt",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "jsontoxml": "^1.0.1"
+  }
+}

@@ -71,7 +71,7 @@ const rebst = require('rebst')
 
 # Options
 
-You can add options to Rebst. Each of them is optional
+You can add options to Rebst. Each of them are optional
 
 ```javascript
 rebst.options({

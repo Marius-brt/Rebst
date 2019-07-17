@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Marius-brt/Rebst">
-    <img src="https://github.com/Marius-brt/Rebst/blob/master/logo.png" alt="Logo" width="150">
+    <img src="https://i.ibb.co/zmPc37t/logo.png" alt="Logo" width="150">
   </a>
 
   <p align="center">

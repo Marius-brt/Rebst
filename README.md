@@ -97,5 +97,12 @@ app.get('/', function (req, res, next) {
 }, rebst)
 ```
 
+# Author
+
+
+[1.1]: http://i.imgur.com/tXSoThF.png (https://twitter.com/mariusbrouty)
+[2.1]: http://i.imgur.com/1AGmwO3.png (https://dribbble.com/MariusBrt)
+[3.1]: http://i.imgur.com/0o48UoR.png (https://github.com/Marius-brt)
+
 # License
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

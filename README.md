@@ -99,10 +99,27 @@ app.get('/', function (req, res, next) {
 
 # Author
 
-
-[1.1]: http://i.imgur.com/tXSoThF.png (https://twitter.com/mariusbrouty)
-[2.1]: http://i.imgur.com/1AGmwO3.png (https://dribbble.com/MariusBrt)
-[3.1]: http://i.imgur.com/0o48UoR.png (https://github.com/Marius-brt)
+<p align="center">
+    <a href="https://twitter.com/mariusbrouty">
+        Twitter
+    </a>
+    ·
+    <a href="https://dribbble.com/MariusBrt">
+        Dribbble
+    </a>
+    ·
+    <a href="https://www.instagram.com/marius.brt/">
+        Instagram
+    </a>
+    ·
+    <a href="https://www.behance.net/mariusbrou0083">
+        Behance
+    </a>
+    ·
+    <a href="https://github.com/Marius-brt">
+        GitHub
+    </a>
+</p>
 
 # License
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

@@ -97,9 +97,12 @@ app.get('/', function (req, res, next) {
 }, rebst)
 ```
 
-# Author
 
+# License
+You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)
 <p align="center">
+    <br/>
+    <br/>
     <a href="https://twitter.com/mariusbrouty">
         Twitter
     </a>
@@ -120,6 +123,3 @@ app.get('/', function (req, res, next) {
         GitHub
     </a>
 </p>
-
-# License
-You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

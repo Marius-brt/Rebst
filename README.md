@@ -93,7 +93,7 @@ app.get('/', function (req, res, next) {
           // Enter your data here (the data is not sent if the status is not positive)
       }
   })
-  next() // Don't forget to put next() after your answer
+  next() // Don't forget to put next() after your response
 }, rebst)
 ```
 

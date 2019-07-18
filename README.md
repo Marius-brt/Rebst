@@ -66,6 +66,8 @@ $ npm install rebst
 # Getting Started
 To initialize Rebst, simply add this line in the script where you want to use Rebst
 
+**Ps** : the documentation use Express as server but you can use an other framework
+
 ```javascript
 const rebst = require('rebst')
 expressApp.use(rebst)
@@ -76,7 +78,6 @@ expressApp.use(rebst)
 
 You can add options to Rebst. These options will be applied to all responses in this script. Each of them are optional
 
-PS : the documentation use Express as server but you can use an other framework
 
 ```javascript
 rebst.options({

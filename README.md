@@ -6,7 +6,7 @@
   <p align="center">
     <br />
     <br />
-    A simple way to create standardized responses for remaining APIs that work with Express
+    A simple way to create standardized responses for API Rest
     <br />
     <a href="#Installation"><strong>Explore the docs »</strong></a>
     <br />
@@ -79,22 +79,40 @@ rebst.options({
     format: 'json' or 'xml', // The format of your response (json by default)
     payload: {
         // Here you can add everything you want
-    }
+    },
+    headers: {
+        'HeaderName': 'value',
+         ...
+        // Response headers
+    },
+    console: true // Sends information about each response to the console (false by default)
 })
 ```
 
 # Send a Response
 
 ```javascript
-app.get('/', function (req, res, next) {
-  res.rebst = rebst.send({
+app.get('/', function (req, res) {
+  rebst.send(res, {
       status: 200, // 200 by default
       data: { 
           // Enter your data here (the data is not sent if the status is not positive)
-      }
+      },
+      headers: {
+        'HeaderName': 'value',
+         ...
+        // Response headers
+    }
   })
-  next() // Don't forget to put next() after your response
-}, rebst)
+})
+```
+
+# Redirect
+
+```javascript
+app.get('/', function (req, res) {
+  rebst.redirect(res, 'https://www.yourwebsite.com/')
+})
 ```
 
 

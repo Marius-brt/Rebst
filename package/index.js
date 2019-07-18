@@ -1,14 +1,14 @@
 const statusMes = require('http').STATUS_CODES
 const jsonxml = require('jsontoxml')
-var staticOptions = {}
-
-function rebst(req, res, next) {
-    staticOptions.format == 'xml' ? res.setHeader("Content-Type", "application/xml") : res.setHeader("Content-Type", "application/json");
-    res.send(res.rebst)
-    next()
+var staticOptions = {
+    format: 'json',
+    payload: null,
+    version: null,
+    headers: null,
+    console: false
 }
 
-function send(params = {status: 200, data: null}) {
+function send(res, params = {status: 200, data: null, headers: null}) {
     const status = params.status || 200
     const success = status >= 200 && status < 300 ? true : false
     const message = statusMes[status]
@@ -18,19 +18,43 @@ function send(params = {status: 200, data: null}) {
     }
     if(staticOptions.version != null) result['version'] = staticOptions.version
     if(staticOptions.payload != null) result['payload'] = staticOptions.payload
+    if(staticOptions.headers != null) {
+        for (let [key, value] of Object.entries(staticOptions.headers)) {
+            res.setHeader(key, value)
+        }
+    }
+    if(params.headers != null) {
+        for (let [key, value] of Object.entries(params.headers)) {
+            res.setHeader(key, value)
+        }
+    }
     if(success && params.data != null) result['data'] = params.data
 
-    return staticOptions.format == 'xml' ? jsonxml(result) : result
-}
-
-function Options(options = {format: 'json', payload: null, version: ''}) {
-    staticOptions = {
-        format: options.format || 'json'
+    if(staticOptions.console) {
+        d = new Date()
+        hours = format_two_digits(d.getHours())
+        minutes = format_two_digits(d.getMinutes())
+        seconds = format_two_digits(d.getSeconds())
+        console.log(`${hours + ":" + minutes + ":" + seconds} : Response status : ${status} -> ${message} | format : ${staticOptions.format || 'json'}`)
     }
-    if(options.payload != null) staticOptions['payload'] = options.payload
-    if(options.version != '') staticOptions['version'] = options.version
+
+    staticOptions.format == 'xml' ? res.setHeader("Content-Type", "application/xml") : res.setHeader("Content-Type", "application/json");
+    res.status(status).send(staticOptions.format == 'xml' ? jsonxml(result) : result)
+    res.end()
 }
 
-module.exports = rebst
+function Options(options = {format: 'json', payload: null, version: '', headers: null, console: false}) {
+    staticOptions = options
+}
+
+function redirect(res, url) {
+    return res.redirect(url);
+}
+
+function format_two_digits(n) {
+    return n < 10 ? '0' + n : n;
+}
+
 module.exports.send = send
+module.exports.redirect = redirect
 module.exports.options = Options

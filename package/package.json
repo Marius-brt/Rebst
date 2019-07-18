@@ -1,7 +1,7 @@
 {
   "name": "rebst",
-  "version": "1.0.5",
-  "description": "A simple way to create standardized responses for remaining APIs that work with Express",
+  "version": "1.0.6",
+  "description": "A simple way to create standardized responses for API Rest",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

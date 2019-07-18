@@ -100,7 +100,7 @@ rebst.options({
 - **headers** : This is where you put the headers of your response for each of them
 
 # Send a Response
-Below you can see the simplest form of response with Rebst. It only returns a status of 200S and the message 'Ok'
+Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'
 
 ```javascript
 expressApp.get('/', function(req, res) {

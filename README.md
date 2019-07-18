@@ -23,6 +23,9 @@
     <a href="https://www.npmjs.com/package/rebst">
         <img src="https://img.shields.io/npm/v/rebst.svg">
     </a>
+    <a href="https://www.npmjs.com/package/rebst">
+        <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/rebst.svg?label=size">
+    </a>
     <a href="https://github.com/Marius-brt">
         <img src="https://img.shields.io/github/followers/Marius-brt.svg">
     </a>
@@ -30,6 +33,14 @@
         <img src="https://img.shields.io/github/stars/Marius-brt/rebst.svg">
     </a>
 </p>
+
+# Features
+    
+* Restfull response
+* Automatic error response
+* Console
+* Payload system
+* Response format
 
 # Example
 A response example from the [demo](https://github.com/Marius-brt/Rebst/blob/master/demo/index.js)
@@ -46,15 +57,6 @@ A response example from the [demo](https://github.com/Marius-brt/Rebst/blob/mast
     }
 }
 ```
-
-# Features
-
-* Restfull response
-* Automatic error response
-* Console
-* Payload system
-* Response format
-* Lightweight : ~8 Ko
 
 # Installation
 
@@ -98,7 +100,7 @@ rebst.options({
 - **headers** : This is where you put the headers of your response for each of them
 
 # Send a Response
-Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'
+Below you can see the simplest form of response with Rebst. It only returns a status of 200S and the message 'Ok'
 
 ```javascript
 expressApp.get('/', function(req, res) {

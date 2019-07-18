@@ -101,7 +101,7 @@ app.get('/', function (req, res) {
       headers: {
         'HeaderName': 'value',
          ...
-        // Response headers
+        // Response headers (optional)
     }
   })
 })

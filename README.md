@@ -59,7 +59,7 @@ $ npm install rebst
 * Restfull response
 * Automatic error response
 * Payload system
-* Lightweight : ~100 Ko
+* Lightweight : ~8 Ko
 
 # Getting Started
 To initialize Rebst, simply add this line in the script where you want to use Rebst
@@ -71,43 +71,71 @@ const rebst = require('rebst')
 
 # Options
 
-You can add options to Rebst. Each of them are optional
+You can add options to Rebst. These options will be applied to all responses in this script. Each of them are optional
 
 ```javascript
 rebst.options({
-    version: '1.0.0', // The version of you API
-    format: 'json' or 'xml', // The format of your response (json by default)
+    version: '1.0.0',
+    format: 'json' or 'xml',
     payload: {
-        // Here you can add everything you want
+        text: 'Hello world'
     },
     headers: {
-        'HeaderName': 'value',
-         ...
-        // Response headers
+        'Allow-Control-From-Origin': '*'
     },
-    console: true // Sends information about each response to the console (false by default)
+    console: true
 })
 ```
 
+- **version** : The version of you API
+- **format** : The format of your response (json by default)
+- **payload** : Here you can add everything you want (example : the date)
+- **headers** : This is where you put the headers of your response for each of them
+- **console** : Sends information about each response to the console (false by default)
+
 # Send a Response
+Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'
+
+```javascript
+app.get('/', function(req, res) {
+    rebst.send(res)
+})
+```
+
+Result :
+```json
+{
+    "success": true,
+    "message": "OK"
+}
+```
+
+___
+
+**Now** you can add options to your response. Each of them are optional :
 
 ```javascript
 app.get('/', function (req, res) {
   rebst.send(res, {
-      status: 200, // 200 by default
+      status: 200,
       data: { 
-          // Enter your data here (the data is not sent if the status is not positive)
+          id: 1,
+          username: 'username'
       },
       headers: {
-        'HeaderName': 'value',
-         ...
-        // Response headers (optional)
+        'Allow-Control-From-Origin': '*'
     }
   })
 })
 ```
 
+- **status** : It's the status code. It defined to 200 by default
+- **data** : This is where you put your data as an Object
+- **headers** : This is where you put the headers of your response. This will be applied only to this response
+
+
 # Redirect
+Redirect allows you to redirect the user to another web page
 
 ```javascript
 app.get('/', function (req, res) {

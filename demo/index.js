@@ -2,12 +2,13 @@ const express = require('express')
 const app = express()
 const rebst = require('rebst')
 
+app.use(rebst)
+
 rebst.options({
     version: '1.0.0',
     headers: {
       'Allow-Control-From-Origin': '*'
-    },
-    console: true
+    }
 })
 
 app.get('/user/:id', function (req, res) {

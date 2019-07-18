@@ -47,6 +47,15 @@ A response example from the [demo](https://github.com/Marius-brt/Rebst/blob/mast
 }
 ```
 
+# Features
+
+* Restfull response
+* Automatic error response
+* Console
+* Payload system
+* Response format
+* Lightweight : ~8 Ko
+
 # Installation
 
 For installation, install the npm package in your project
@@ -54,18 +63,12 @@ For installation, install the npm package in your project
 $ npm install rebst
 ```
 
-# Features
-
-* Restfull response
-* Automatic error response
-* Payload system
-* Lightweight : ~8 Ko
-
 # Getting Started
 To initialize Rebst, simply add this line in the script where you want to use Rebst
 
 ```javascript
 const rebst = require('rebst')
+expressApp.use(rebst)
 ```
 
 
@@ -82,8 +85,7 @@ rebst.options({
     },
     headers: {
         'Allow-Control-From-Origin': '*'
-    },
-    console: true
+    }
 })
 ```
 
@@ -91,7 +93,6 @@ rebst.options({
 - **format** : The format of your response (json by default)
 - **payload** : Here you can add everything you want (example : the date)
 - **headers** : This is where you put the headers of your response for each of them
-- **console** : Sends information about each response to the console (false by default)
 
 # Send a Response
 Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'

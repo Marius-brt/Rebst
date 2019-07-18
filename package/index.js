@@ -4,8 +4,7 @@ var staticOptions = {
     format: 'json',
     payload: null,
     version: null,
-    headers: null,
-    console: false
+    headers: null
 }
 
 function send(res, params = {status: 200, data: null, headers: null}) {
@@ -30,20 +29,12 @@ function send(res, params = {status: 200, data: null, headers: null}) {
     }
     if(success && params.data != null) result['data'] = params.data
 
-    if(staticOptions.console) {
-        d = new Date()
-        hours = format_two_digits(d.getHours())
-        minutes = format_two_digits(d.getMinutes())
-        seconds = format_two_digits(d.getSeconds())
-        console.log(`${hours + ":" + minutes + ":" + seconds} : Response status : ${status} -> ${message} | format : ${staticOptions.format || 'json'}`)
-    }
-
     staticOptions.format == 'xml' ? res.setHeader("Content-Type", "application/xml") : res.setHeader("Content-Type", "application/json");
     res.status(status).send(staticOptions.format == 'xml' ? jsonxml(result) : result)
     res.end()
 }
 
-function Options(options = {format: 'json', payload: null, version: '', headers: null, console: false}) {
+function Options(options = {format: 'json', payload: null, version: '', headers: null}) {
     staticOptions = options
 }
 
@@ -55,6 +46,16 @@ function format_two_digits(n) {
     return n < 10 ? '0' + n : n;
 }
 
+module.exports = (req, res, next) => {
+    res.on('finish', () => {
+        d = new Date()
+        hours = format_two_digits(d.getHours())
+        minutes = format_two_digits(d.getMinutes())
+        seconds = format_two_digits(d.getSeconds())
+        console.log(`${hours + ":" + minutes + ":" + seconds} > Request type : ${req.method} | Request path : '${req.path}' | Request status : ${res.statusCode} | Message : ${statusMes[res.statusCode]} | Request params : ${JSON.stringify(req.params)}`)
+    })
+    next()
+}
 module.exports.send = send
 module.exports.redirect = redirect
 module.exports.options = Options

@@ -76,6 +76,8 @@ expressApp.use(rebst)
 
 You can add options to Rebst. These options will be applied to all responses in this script. Each of them are optional
 
+PS : the documentation use Express as server but you can use an other framework
+
 ```javascript
 rebst.options({
     version: '1.0.0',
@@ -98,7 +100,7 @@ rebst.options({
 Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'
 
 ```javascript
-app.get('/', function(req, res) {
+expressApp.get('/', function(req, res) {
     rebst.send(res)
 })
 ```
@@ -111,12 +113,11 @@ Result :
 }
 ```
 
-___
 
 **Now** you can add options to your response. Each of them are optional :
 
 ```javascript
-app.get('/', function (req, res) {
+expressApp.get('/', function (req, res) {
   rebst.send(res, {
       status: 200,
       data: { 
@@ -139,7 +140,7 @@ app.get('/', function (req, res) {
 Redirect allows you to redirect the user to another web page
 
 ```javascript
-app.get('/', function (req, res) {
+expressApp.get('/', function (req, res) {
   rebst.redirect(res, 'https://www.yourwebsite.com/')
 })
 ```

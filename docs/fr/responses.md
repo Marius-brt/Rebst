@@ -22,6 +22,7 @@ Hello world !
 
 `rebst` permet d'envoyer une réponse formater avec des données. 
 
+
 ```javascript
 app.get('/', (req, res) => {
     res.rebst({
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
     })
 })
 ```
+> Chaque option est optionnelle
 
 - status: `Int`
 - data: `Object`

@@ -1,6 +1,8 @@
 # Settings
 You can add options to Rebst with `rebst.init()`
 
+> Each option is optional
+
 ```javascript
 const app = rebst.init({
     console: true,

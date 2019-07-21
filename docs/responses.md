@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
     })
 })
 ```
+> Each option is optional
 
 - status: `Int`
 - data: `Object`

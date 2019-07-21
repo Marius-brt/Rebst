@@ -6,7 +6,7 @@
   <p align="center">
     <br />
     <br />
-    A simple way to create standardized responses for API Rest
+    Rebst is a framework that allows you to easily and quickly create a Rest API
     <br />
     <a href="#Installation"><strong>Explore the docs »</strong></a>
     <br />

@@ -61,21 +61,13 @@ app.get('/', (req, res) => {
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)
 <p align="center">
     <br/>
-    <br/>
-    <a href="https://twitter.com/mariusbrouty">
-        Twitter
+    <br/>    
+    <a href="https://discord.gg/VZVCcSg">
+        Discord
     </a>
     ·
-    <a href="https://dribbble.com/MariusBrt">
-        Dribbble
-    </a>
-    ·
-    <a href="https://www.instagram.com/marius.brt/">
-        Instagram
-    </a>
-    ·
-    <a href="https://www.behance.net/mariusbrou0083">
-        Behance
+    <a href="https://www.npmjs.com/package/rebst">
+        Npm
     </a>
     ·
     <a href="https://github.com/Marius-brt">

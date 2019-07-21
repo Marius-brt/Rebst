@@ -1,20 +1,23 @@
 {
   "name": "rebst",
-  "version": "1.0.7",
-  "description": "A simple way to create standardized responses for API Rest",
+  "version": "1.1.0",
+  "description": "Rebst is a framework that allows you to easily and quickly create a Rest API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "express",
     "api",
     "rest",
-    "response"
+    "server",
+    "http",
+    "framework"
   ],
   "author": "marius.brt",
   "license": "GPL-3.0",
   "dependencies": {
-    "jsontoxml": "^1.0.1"
+    "colors": "^1.3.3",
+    "jsontoxml": "^1.0.1",
+    "mime-types": "^2.1.24"
   }
 }

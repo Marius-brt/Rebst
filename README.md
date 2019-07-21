@@ -34,29 +34,40 @@
     </a>
 </p>
 
+```javascript
+const rebst = require('rebst')
+const app = rebst.init()
+
+app.get('/', (req, res) => {
+    res.rebst({
+        status: 200,
+        data: { 
+            id: 1,
+            username: 'username'
+        }
+    })
+})
+```
+
 # Features
     
-* Restfull response
+* Super easy to use
+* Middleware
+* Restfull
 * Automatic error response
 * Console
-* Payload system
-* Response format
 
-# Example
-A response example from the [demo](https://github.com/Marius-brt/Rebst/blob/master/demo/index.js)
+# Contents
 
-```json
-{
-    "success": true,
-    "message": "OK",
-    "version": "1.0.0",
-    "data": {
-        "id": 1,
-        "user": "name",
-        "email": "user@example.com"
-    }
-}
-```
+* [Installation](#Installation)
+* [Initialize](#Initialize)
+    * [Options](#Options)
+* [Routing](#Routing)
+    * [Response](#Response)
+    * [Params](#Params)
+* [Middleware](#Middleware)
+    * [Writing Middleware](#Writing-Middleware)
+* [License](#License)
 
 # Installation
 
@@ -65,89 +76,138 @@ For installation, install the npm package in your project
 $ npm install rebst
 ```
 
-# Getting Started
-To initialize Rebst, simply add this line in the script where you want to use Rebst
-
-**Ps** : the documentation use Express as server but you can use an other framework
+# Initialize
+To initialize Rebst, simply add this line in your app
 
 ```javascript
 const rebst = require('rebst')
-expressApp.use(rebst)
+const app = rebst.init()
 ```
 
 
 # Options
 
-You can add options to Rebst. These options will be applied to all responses in this script. Each of them are optional
+You can add options to Rebst. Each of them are optional
 
 
 ```javascript
-rebst.options({
+const app = rebst.init({
+    port: 3000,
     version: '1.0.0',
+    time: true,
     format: 'json' or 'xml',
     payload: {
-        text: 'Hello world'
+        
     },
-    headers: {
-        'Allow-Control-From-Origin': '*'
-    }
+    console: true
 })
 ```
 
-- **version** : The version of you API
-- **format** : The format of your response (json by default)
-- **payload** : Here you can add everything you want (example : the date)
-- **headers** : This is where you put the headers of your response for each of them
+- **port** : The port of your API (3000 by default) **[int]**
+- **version** : The version of your API **[string]**
+- **time** : Show the time of the response **[boolean]**
+- **format** : The format of your response (json by default) **[string]**
+- **payload** : Here you can add everything you want **[object]**
+- **console** : Enable or disable the console **[boolean]**
 
-# Send a Response
-Below you can see the simplest form of response with Rebst. It only returns a status of 200 and the message 'Ok'
+# Routing
+**Routing** indicates what the server responds according to the url of the request. To do this, use the command `app.mymethod(url, callback)`
+
+Example :
+```javascript
+app.get('/', (req, res) => {
+    res.send('Hello world !')
+})
+```
+In this example, if the url is at the **root** of the API and the method is **GET**, then the callback script is executed (here the server sends '_Hello world_' to the client)
+
+List of methods supported by Rebst :
+* GET
+* POST
+* PUT
+* PATCH
+* DELETE
+* COPY
+* HEAD
+* OPTIONS
+* LINK
+* UNLINK
+* PURGE
+* LOCK
+* UNLOCK
+* PROPFIND
+* VIEW
+
+# Response
+Below you can see the simplest form of response with Rebst
 
 ```javascript
-expressApp.get('/', function(req, res) {
-    rebst.send(res)
+app.get('/', (req, res) => {
+    res.send('Hello world !')
 })
 ```
+
+Result :
+```
+Hello world !
+```
+
+**Now** you can make more complex responses :
+
+```javascript
+app.get('/', (req, res) => {
+    res.rebst({
+        status: 200,
+        data: {
+            id: 1,
+            user: 'Marius'
+        }
+    })
+})
+```
+
+- **status** : It's the status code of the response (200 by default) **[int]**
+- **data** : This is where you put your data **[object]**
 
 Result :
 ```json
 {
     "success": true,
-    "message": "OK"
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "username": "username"
+    }
 }
 ```
 
+# Params
+Under development
 
-**Now** you can add options to your response. Each of them are optional :
+# Middleware
+To use a new middleware, use the command `rebst.use()`
 
 ```javascript
-expressApp.get('/', function (req, res) {
-  rebst.send(res, {
-      status: 200,
-      data: { 
-          id: 1,
-          username: 'username'
-      },
-      headers: {
-        'Allow-Control-From-Origin': '*'
+rebst.use(myMiddleware)
+```
+
+# Writing Middleware
+To create a new middleware, simply follow these instructions :
+
+1. Create a `.js` file
+2. Copy these few lines :
+    ```javascript
+    module.exports = (req, res) => {
+        // Your code
     }
-  })
-})
-```
+    ```
+3. Enable middleware :
+    ```javascript
+    const myMiddleware = require('./myMiddleware')
+    rebst.use(myMiddleware)
+    ```
 
-- **status** : It's the status code. It defined to 200 by default
-- **data** : This is where you put your data as an Object
-- **headers** : This is where you put the headers of your response. This will be applied only to this response
-
-
-# Redirect
-Redirect allows you to redirect the user to another web page
-
-```javascript
-expressApp.get('/', function (req, res) {
-  rebst.redirect(res, 'https://www.yourwebsite.com/')
-})
-```
-
+That it !
 
 # License
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

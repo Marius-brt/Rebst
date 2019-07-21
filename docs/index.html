@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Rebst</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  </head>
+  <body>
+    <nav>
+      <a href="#/">EN</a>
+      <a href="#/fr/">FR</a>
+    </nav>
+    <div data-app id="main">Please wait...</div>
+    <script>
+      window.$docsify = {
+        el: '#main',
+        coverpage: true,
+        loadSidebar: true,
+        plugins: [
+          function(hook) {
+            var footer = [
+              '<hr/>',
+              '<footer>',
+              '<p align="center"><a href="https://twitter.com/mariusbrouty">Twitter</a> · <a href="https://dribbble.com/MariusBrt">Dribbble</a> · <a href="https://www.instagram.com/marius.brt/">Instagram</a> · <a href="https://www.behance.net/mariusbrou0083">Behance</a> · <a href="https://github.com/Marius-brt">GitHub</a></p>',
+              '</footer>'
+            ].join('');
+
+            hook.afterEach(function(html) {
+              return html + footer;
+            });
+          }
+        ],
+        coverpage: ['/', '/fr/'],
+        themeColor: '#646ecb'
+      }
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  </body>
+</html>

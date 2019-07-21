@@ -8,7 +8,7 @@
     <br />
     A simple way to create Rest APIs easily and quickly
     <br />
-    <a href="https://www.rebst.cf/" target="_blank"><strong>Explore the docs »</strong></a>
+    <a href="https://www.rebst.cf/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Marius-brt/Rebst/blob/master/demo/index.js">View Demo</a>

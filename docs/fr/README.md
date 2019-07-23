@@ -1,5 +1,5 @@
 # Présentation
-Rebst est un framework NodeJs qui vous permez de créer facilement et rapidement une API Rest
+Rebst est un framework NodeJs qui vous permet de créer facilement et rapidement une API Rest
 
 ```javascript
 const rebst = require('rebst')
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 * Console
 
 # Auteur
-Moi c'est Marius,  développeur français de 16 ans. Je suis le créateur de `Rebst`
+Je suis Marius,  développeur français de 16 ans. Je suis le créateur de `Rebst`
 
 # License
 Vous pouvez lire la license [ici](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

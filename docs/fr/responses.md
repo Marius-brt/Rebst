@@ -11,7 +11,7 @@ Les réponses permettent d'envoyer du texte ou des données au client
 res.send('Hello world !')
 ```
 
-#### Resultat
+#### Résultat
 ```
 Hello world !
 ```
@@ -20,7 +20,7 @@ Hello world !
 
 `res.rebst(data)`
 
-`rebst` permet d'envoyer une réponse formater avec des données. 
+`rebst` permet d'envoyer une réponse formatée avec des données. 
 
 
 ```javascript
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 - status: `Int`
 - data: `Object`
 
-#### Resultat
+#### Résultat
 ```json
 {
     "success": true,

@@ -1,5 +1,5 @@
 # Créer un middleware
-Pour créer votre middleware, il faut faire une `function` qui accept au minimum deux paramètres : `req` et `res`. Cette `function` peut faire partie de votre script ou faire partie d'un autre script
+Pour créer votre middleware, il créer une `function` qui accepte au minimum deux paramètres : `req` et `res`. Cette `function` peut faire partie de votre script ou être externe à celui-ci
 
 ### Exemple : interne
 ```javascript

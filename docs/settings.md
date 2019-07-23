@@ -28,7 +28,7 @@ rebst.init({
 - Type: `String`
 - Default: `null`
 
-Define the version of your API. This is displayed in all responses
+Define the version of your API. This is displayed in all responses of your API
 
 ```javascript
 rebst.init({
@@ -82,7 +82,7 @@ rebst.init({
 - Type: `Boolean`
 - Default: `true`
 
-Enable or not the console. When it is activated, a report of each response sent is displayed in the console. useful to debug your API
+Enable or not the console. When activated, a report of each response sent is displayed in the console. Useful to debug your API
 
 ```javascript
 rebst.init({

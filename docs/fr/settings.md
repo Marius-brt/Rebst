@@ -15,7 +15,7 @@ const app = rebst.init({
 - Type: `Int`
 - Défaut: `3000`
 
-Définie le port de votre API
+Définit le port de votre API
 
 ```javascript
 rebst.init({
@@ -28,7 +28,7 @@ rebst.init({
 - Type: `String`
 - Défaut: `null`
 
-Définie la version de votre API. Celle-ci est affiché dans toutes les réponses
+Définit la version de votre API. Celle-ci est affichée dans toutes les réponses de votre API
 
 ```javascript
 rebst.init({
@@ -41,7 +41,7 @@ rebst.init({
 - Type: `Boolean`
 - Défaut: `false`
 
-Affiche ou non l'heure où la réponse à été envoyé (par rapport au fuseau horaire du serveur)
+Affiche ou non l'heure à laquelle la réponse a été envoyée (par rapport au fuseau horaire de votre serveur)
 
 ```javascript
 rebst.init({
@@ -54,7 +54,7 @@ rebst.init({
 - Type: `String`
 - Défaut: `json`
 
-Définie le format de votre réponse. Les formats supportés sont le json et le xml
+Définit le format de votre réponse. Les formats supportés sont le json et le xml
 
 ```javascript
 rebst.init({
@@ -67,7 +67,7 @@ rebst.init({
 - Type: `Object`
 - Défaut: `null`
 
-Payload vous permet d'ajouter des données qui seront envoyé dans toutes les réponses
+Payload vous permet d'ajouter des données qui seront envoyées dans toutes les réponses
 
 ```javascript
 rebst.init({
@@ -82,7 +82,7 @@ rebst.init({
 - Type: `Boolean`
 - Défaut: `true`
 
-Active ou non la console. Lors ce quelle est activé, un bilan de chaques réponses envoyé est affiché dans la console. utile pour débugger votre API
+Active ou non la console. Lorsqu'elle est activée, un bilan de chaque réponse est envoyé et s'affiche dans la console. Utile pour débugger votre API
 
 ```javascript
 rebst.init({

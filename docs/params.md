@@ -8,7 +8,7 @@ app.get('/:id', (req, res) => {
 })
 ```
 
-To declare a new variable in your url, you must put `:` in front of the name of your variable.
+To declare a new variable in your url, you must put `:` before the name of your variable.
 <br>
 **Example** : `/:category/:post`
 <br>

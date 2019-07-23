@@ -1,7 +1,7 @@
 # Writing middleware
-To create your middleware, you must make a `function` that accepts at least two parameters: `req` and `res`. This `function` can be part of your script or part of another script
+To create your middleware, you must make a `function` that accepts at least two parameters : `req` and `res`. This `function` can be part of your script or part of another script
 
-### Example : inside
+### Example : internal
 ```javascript
 function myMiddleware(req, res) {
     // My code
@@ -10,7 +10,7 @@ function myMiddleware(req, res) {
 app.use(myMiddleware)
 ```
 
-### Example : extern
+### Example : external
 
 `middleware.js`
 ```javascript

@@ -1,7 +1,7 @@
 # Routing
-Les routes indique ce que le serveur répond en fonction de l'url de la requête. Pour cela, utilisez la commande `app.maMethode(url, callback)`
+Les routes indiquent ce que le serveur répond en fonction de l'url de la requête. Pour cela, utilisez la commande `app.maMethode(url, callback)`
 
-List des méthodes supporter par Rebst :
+Liste des méthodes supportées par Rebst :
 * GET
 * POST
 * PUT
@@ -25,4 +25,4 @@ app.get('/', (req, res) => {
 })
 ```
 
-Dans cet exemple, si l'url est à la racine de votre API et que la méthode est **GET** alors le callback est exécuté (ici, le serveur envoie `Hello world !` au client)
+Dans cet exemple, si l'url de la requête est à la racine de votre API et que la méthode est **GET** alors le callback est exécuté (ici, le serveur envoie `Hello world !` au client)

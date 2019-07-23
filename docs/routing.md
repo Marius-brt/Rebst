@@ -25,4 +25,4 @@ app.get('/', (req, res) => {
 })
 ```
 
-In this example, if the url is at the root of your API and the method is **GET** then the callback is executed (here, the server sends `Hello world !` to the client)
+In this example, if the requested url is at the root of your API and the method is **GET** then the callback is executed (here, the server sends `Hello world !` to the client)

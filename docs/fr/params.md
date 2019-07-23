@@ -1,5 +1,5 @@
 # Params
-Params vous permet de récupérer les propriétés de votre route. Par exemple, dans route `/user/:id`, la valeur de `id` est accessible avec la commande `req.params.id` ou bien avec `req.params['id']`
+Params vous permet de récupérer les propriétés de votre route. Par exemple, dans la route `/user/:id`, la valeur de `id` est accessible avec la commande `req.params.id` ou bien avec `req.params['id']`
 
 #### Exemple :
 ```javascript

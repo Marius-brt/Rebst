@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 ```
 
 # Advantages
-* Super easy to use
+* Very easy to use
 * Middleware system
 * Restfull
 * Automatic errors 

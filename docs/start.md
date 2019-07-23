@@ -1,6 +1,6 @@
 # Installation
 
-> Requirement : NodeJs
+> Requirement : NodeJs installed
 
 To install Rebst, simply enter this command in your open terminal in the project folder
 ```bash

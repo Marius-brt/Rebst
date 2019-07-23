@@ -1,12 +1,12 @@
 const http = require('http')
 const colors = require('colors')
-const fs = require('fs')
+const { version } = require('../package.json')
 
 const middleware = require('./middleware')
 const router = require('./router')
 const errorHandler = require('./errorHandler')
 
-settings = {
+var settings = {
     port: 3000,
     version: null,
     payload: null,
@@ -25,7 +25,7 @@ exports.init = (params = {}) => {
         const curRouter = new router
         http.createServer(middleware(curRouter, settings)).listen(settings.port, () => {
             console.log(`Rebst > Server is running on port ${settings.port}`.green)
-            console.log(`Rebst > Version : 1.1.1 | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
+            console.log(`Rebst > Version : ${version} | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
             console.log(`Settings > Port : ${settings.port} | Response format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Console : ${settings.console}`.cyan)
         }).on('error', (err) => {
             errorHandler(err, settings.port)

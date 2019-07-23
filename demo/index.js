@@ -7,12 +7,11 @@ const app = rebst.init({
 const middleware = require('./middleware')
 rebst.use(middleware)
 
-app.get('/', (req, res) => {
+app.get('/user/:id', (req, res) => {
   res.rebst({
     status: 200,
     data: {
-      id: 1,
-      user: 'User'
+      id: req.params.id
     }
   })
 })

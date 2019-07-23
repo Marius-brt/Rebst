@@ -4,7 +4,8 @@
   "description": "Rebst is a framework that allows you to easily and quickly create a Rest API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [
     "api",
@@ -18,11 +19,12 @@
   "dependencies": {
     "colors": "^1.3.3",
     "jsontoxml": "^1.0.1",
-    "mime-types": "^2.1.24"
+    "mime-types": "^2.1.24",
+    "nodemon": "^1.19.1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Marius-brt/Rebst"
+    "type": "git",
+    "url": "https://github.com/Marius-brt/Rebst"
   },
   "homepage": "https://www.rebst.cf/"
 }

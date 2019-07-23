@@ -16,7 +16,7 @@ module.exports = exports = (router, settings) => {
   }
 }
 
-exports.use = function use(newMiddleware) {
+exports.use = (newMiddleware) => {
   exports.addons.push(newMiddleware)
 }
 

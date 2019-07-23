@@ -21,15 +21,19 @@ exports.init = (params = {}) => {
             if(key in settings) settings[key] = params[key]
         })
     }
-    const curRouter = new router
-    const server = http.createServer(middleware(curRouter, settings)).listen(settings.port, () => {
-        console.log(`Rebst > Server is running on port ${settings.port}`.green)
-        console.log(`Rebst > Version : 1.1.1 | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
-        console.log(`Settings > Port : ${params.port} | Response format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Console : ${settings.console}`.cyan)
-    }).on('error', (err) => {
-        errorHandler(err, settings.port)
-    })
-    return curRouter
+    if(settings.format.toLowerCase() == 'json' || settings.format.toLowerCase() == 'xml') {
+        const curRouter = new router
+        http.createServer(middleware(curRouter, settings)).listen(settings.port, () => {
+            console.log(`Rebst > Server is running on port ${settings.port}`.green)
+            console.log(`Rebst > Version : 1.1.1 | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
+            console.log(`Settings > Port : ${settings.port} | Response format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Console : ${settings.console}`.cyan)
+        }).on('error', (err) => {
+            errorHandler(err, settings.port)
+        })
+        return curRouter
+    } else {
+        console.log(`Rebst > Response format invalid !`.red)
+    }
 }
 
 exports.use = middleware.use

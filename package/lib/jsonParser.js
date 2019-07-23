@@ -1,4 +1,4 @@
-module.exports = exports = function jsonParser(req) {
+module.exports = exports = (req) => {
   let content = ''
   req.on('data', data => {
     content += data.toString()

@@ -1,11 +1,17 @@
 const jsonParser = require('./jsonParser')
-const send = require('./send')
+const response = require('./response')
 const Console = require('./console')
+const request = require('./request')
+const printer = require('./errorPrinter')
 
 module.exports = exports = (router, settings) => {
   return (req, res) => {
+    Object.keys(settings.headers).forEach(function(key) {
+      res.setHeader(key, settings.headers[key])
+    })
     jsonParser(req)
-    send(req, res, settings)    
+    response(req, res, settings)
+    request(req, res, settings)
     if(settings.console) Console(req, res)
     for (let addon of exports.addons) {
       addon(req, res)

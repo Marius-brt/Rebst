@@ -1,15 +1,10 @@
 const rebst = require('./index')
-const fs = require('fs')
-const app = rebst.init()
+const app = rebst.init({
+    format: 'xml'
+})
 
-app.get('/', (req, res) => {    
+app.get('/', (req, res) => {
     res.rebst({
-        data: {
-            id: req.headers['test']
-        },
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "*"
-        }
+        data: req.body
     })
 })

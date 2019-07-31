@@ -1,4 +1,5 @@
-const jsonxml = require('jsontoxml')
+const Parser = require("fast-xml-parser").j2xParser
+var jsonxml = new Parser()
 const httpMes = require('http').STATUS_CODES
 
 const time = require('./time')
@@ -26,7 +27,7 @@ module.exports = exports = (req, res, settings) => {
             }
             res.writeHead(status, { 'Content-Type': `application/${format}` })
             if(format == 'xml') {
-                res.write(jsonxml(result))
+                res.write(jsonxml.parse(result))
             } else if(format == 'html') {
                 res.write(params.data)
             } else {

@@ -1,15 +1,30 @@
-const jsonParser = require('./jsonParser')
+const bodyParser = require('./bodyParser')
 const response = require('./response')
 const Console = require('./console')
 const request = require('./request')
-const printer = require('./errorPrinter')
 
-module.exports = exports = (router, settings) => {
+module.exports = exports = (router, settings, emitter) => {
   return (req, res) => {
+    req.on('end', () => {
+      emitter.emit('received')
+    })
+    res.on('finish', () => {
+      emitter.emit('sended')
+    })
+
     Object.keys(settings.headers).forEach(function(key) {
       res.setHeader(key, settings.headers[key])
     })
-    jsonParser(req)
+
+    exports.needBody = () => {
+      if(req.body == null) {
+        res.rebst({
+          status: 400
+        })
+      }
+    }
+
+    bodyParser(req, res, settings)
     response(req, res, settings)
     request(req, res, settings)
     if(settings.console) Console(req, res)

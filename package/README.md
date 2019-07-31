@@ -11,8 +11,8 @@
   </p>
   <p align="center">
     Look at the documentation on
-    <a href="https://github.com/Marius-brt/Rebst">
-        GitHub
+    <a href="https://www.rebst.cf/">
+        here
     </a>
   </p>
 </p>

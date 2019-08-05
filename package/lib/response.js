@@ -3,6 +3,7 @@ var jsonxml = new Parser()
 const httpMes = require('http').STATUS_CODES
 
 const time = require('./time')
+const resId = require('./middlewares/resId')
 
 module.exports = exports = (req, res, settings) => {
     res.rebst = (params = {status: 200, data: null, headers: null}) => {
@@ -12,10 +13,11 @@ module.exports = exports = (req, res, settings) => {
             var result = {
                 success: status < 400 ? true : false,
                 message: httpMes[status],
+                id: resId(res, settings.resId),
                 time: settings.time ? time() : null,
                 version: settings.version,
                 payload: settings.payload,
-                data: status < 400 ? params.data : null
+                data: status < 400 ? params.data : null                
             }
             for(key in result) {
                 if(result[key] == null || result[key] == undefined) delete result[key]
@@ -34,16 +36,19 @@ module.exports = exports = (req, res, settings) => {
                 res.write(JSON.stringify(result))
             }        
             res.end()
+            return result
         }
     }
     res.send = (msg = '') => {
         if(!res.finished) {
+            resId(res, settings.resId)
             res.write(msg)
             res.end()
         }
     }
     res.redirect = (url, status = 302) => {
         if(!res.finished) {
+            resId(res, settings.resId)
             res.writeHead(status,  {Location: url})
             res.end()
         }

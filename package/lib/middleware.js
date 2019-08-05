@@ -1,7 +1,8 @@
-const bodyParser = require('./bodyParser')
+const bodyParser = require('./middlewares/bodyParser')
 const response = require('./response')
 const Console = require('./console')
 const request = require('./request')
+const cors = require('./middlewares/cors')
 
 module.exports = exports = (router, settings, emitter) => {
   return (req, res) => {
@@ -24,9 +25,10 @@ module.exports = exports = (router, settings, emitter) => {
       }
     }
 
-    bodyParser(req, res, settings)
-    response(req, res, settings)
     request(req, res, settings)
+    bodyParser(req, res, settings.bodyParser)
+    if(settings.cors.enabled) cors(req, res, settings.cors)
+    response(req, res, settings)
     if(settings.console) Console(req, res)
     for (let addon of exports.addons) {
       addon(req, res)

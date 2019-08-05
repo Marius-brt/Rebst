@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 * Console
 
 # Auteur
-Je suis Marius,  développeur français de 16 ans. Je suis le créateur de `Rebst`
+Je suis Marius, développeur français de 16 ans. Je suis le créateur de `Rebst`
 
 # License
 Vous pouvez lire la license [ici](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

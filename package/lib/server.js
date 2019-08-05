@@ -9,31 +9,55 @@ const printer = require('./errorPrinter')
 
 const formatSupported = ['json', 'xml', 'html']
 
+var corsSettings = {
+    enabled: false,
+    origin: '*',
+    methods: 'GET,POST,PUT,PATCH,DELETE,COPY,HEAD,OPTIONS,LINK,UNLINK,PURGE,LOCK,UNLOCK,PROPFIND,VIEW',
+    exposedHeaders: [],
+    allowedHeaders: [],
+    credentials: false,
+    maxAge: 10
+}
+
+var bodyParserSettings = {
+    enabled: false,
+    bodyReqErr: false
+}
+
+var resIdSettings = {
+    enabled: false,
+    type: 'body',
+    headerName: 'Res-Id'
+}
+
 var settings = {
+    localIp: 'localhost',
     port: 3000,
-    version: null,
-    payload: null,
-    time: false,
-    format: 'json',
-    console: true,
-    blackList: [],
     protocol: 'http',
     httpsOpt: {
         key: null,
         cert: null
     },
+    version: null,
+    payload: null,
+    time: false,
+    format: 'json',
     headers: {},
-    bodyReqErr: false
+    console: true,
+    blackList: [],
+    cors: corsSettings,
+    bodyParser: bodyParserSettings,
+    resId: resIdSettings
 }
 
 class Server extends eventEmitter {
     init(params = settings) {
         this.emit('init')
-        if(params != null) {
-            Object.keys(params).forEach(key => {
-                if(key in settings) settings[key] = params[key]
-            })
-        }    
+        settings = Object.assign(settings, params)
+        settings.cors = Object.assign(corsSettings, params.cors)
+        settings.bodyParser = Object.assign(bodyParserSettings, params.bodyParser)
+        settings.resId = Object.assign(resIdSettings, params.resId)
+
         if(formatSupported.includes(settings.format.toLowerCase())) {
             const curRouter = new router
             var server
@@ -48,10 +72,10 @@ class Server extends eventEmitter {
             } else {
                 printer(`The ${settings.protocol} protocol does not exist or is not supported by Rebst !`, true)
             }
-            server.listen(settings.port, () => {
+            server.listen(settings.port, settings.localIp, () => {
                 console.log(`Rebst > Server is running on port ${settings.port}`.green)
                 console.log(`Rebst > Version : ${version} | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
-                console.log(`Settings > Port : ${settings.port} | Response format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Console : ${settings.console}`.cyan)
+                console.log(`Settings > Port : ${settings.port} | Output format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Time : ${settings.time} | Console : ${settings.console}`.cyan)
             }).on('error', (err) => {
                 errorHandler(err, settings.port)
             })
@@ -60,15 +84,12 @@ class Server extends eventEmitter {
             printer('Response format invalid !', true)
         }
     }
-
     use(newMiddleware) {
         middleware.use(newMiddleware)
     }
-
     err(err = '', fatal = false) {
         printer(err, fatal)
     }
-
     needBody() {
         middleware.needBody()
     }

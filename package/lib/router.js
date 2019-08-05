@@ -11,6 +11,10 @@ const Router = function() {
 }
 
 Router.prototype.route = function(req, res) {
+  if(!methods.includes(req.method.toUpperCase())) {
+    res.rebst({status: 405})
+    return
+  }
   const method = req.method
   const url = req.url
   const routes = this.routes[method.toUpperCase()]

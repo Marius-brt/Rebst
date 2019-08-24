@@ -29,11 +29,9 @@ module.exports = exports = (req, res, settings) => {
             }
             res.writeHead(status, { 'Content-Type': `application/${format}` })
             if(format == 'xml') {
-                res.write(jsonxml.parse(result))
-            } else if(format == 'html') {
-                res.write(params.data)
+                res.write(Encrypt(jsonxml.parse(result), settings.encrypt))
             } else {
-                res.write(JSON.stringify(result))
+                res.write(Encrypt(JSON.stringify(result), settings.encrypt))
             }        
             res.end()
             return result
@@ -46,11 +44,30 @@ module.exports = exports = (req, res, settings) => {
             res.end()
         }
     }
+    res.render = (params = {status: 200, html: ''}) => {
+        if(!res.finished) {
+            resId(res, settings.resId)
+            res.writeHead(params.status || 200, { 'Content-Type': 'text/html' })
+            res.write(params.html || '')
+            res.end()
+        }
+    }
     res.redirect = (url, status = 302) => {
         if(!res.finished) {
             resId(res, settings.resId)
             res.writeHead(status,  {Location: url})
             res.end()
         }
+    }
+}
+
+function Encrypt(text, settings) {
+    if(settings.enabled) {
+        const Cryptr = require('cryptr')
+        const cryptr = new Cryptr(settings.key)
+        const crypted = cryptr.encrypt(text)
+        return crypted;
+    } else {
+        return text
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "rebst",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rebst is a framework that allows you to easily and quickly create a Rest API",
   "main": "index.js",
   "keywords": [
@@ -14,7 +14,8 @@
   "license": "GPL-3.0",
   "dependencies": {
     "colors": "^1.3.3",
-    "fast-xml-parser": "^3.12.19",
+    "cryptr": "^4.0.2",
+    "fast-xml-parser": "^3.12.20",
     "request-ip": "^2.1.3"
   },
   "repository": {

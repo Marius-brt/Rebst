@@ -30,6 +30,11 @@ var resIdSettings = {
     headerName: 'Res-Id'
 }
 
+var encryptSettings = {
+    enabled: false,
+    key: ''
+}
+
 var settings = {
     localIp: 'localhost',
     port: 3000,
@@ -47,7 +52,8 @@ var settings = {
     blackList: [],
     cors: corsSettings,
     bodyParser: bodyParserSettings,
-    resId: resIdSettings
+    resId: resIdSettings,
+    encrypt: encryptSettings
 }
 
 class Server extends eventEmitter {
@@ -57,6 +63,7 @@ class Server extends eventEmitter {
         settings.cors = Object.assign(corsSettings, params.cors)
         settings.bodyParser = Object.assign(bodyParserSettings, params.bodyParser)
         settings.resId = Object.assign(resIdSettings, params.resId)
+        settings.encrypt = Object.assign(encryptSettings, params.encrypt)
 
         if(formatSupported.includes(settings.format.toLowerCase())) {
             const curRouter = new router
@@ -77,7 +84,7 @@ class Server extends eventEmitter {
                 console.log(`Rebst > Version : ${version} | Author : Marius Brt | GitHub : https://github.com/Marius-brt/Rebst`.cyan)
                 console.log(`Settings > Port : ${settings.port} | Output format : ${settings.format} | Version : ${settings.version} | Payload : ${JSON.stringify(settings.payload)} | Time : ${settings.time} | Console : ${settings.console}`.cyan)
             }).on('error', (err) => {
-                errorHandler(err, settings.port)
+                errorHandler(err, settings.port, settings.localIp)
             })
             return curRouter
         } else {

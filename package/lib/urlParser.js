@@ -20,8 +20,10 @@ function parse(model, url) {
         const parsedModel = model.split('/')
         var parsedUrl = path.split(/&|\//)
         if(parsedModel.length == parsedUrl.length) {
-            for(i = 0; i < parsedModel.length; i++) {
-                if(parsedModel[i].charAt(0) == ':') {
+            for(i = 0; i < parsedModel.length; i++) {                
+                if(parsedModel[i].charAt(0) == '|' && parsedModel[i][parsedModel[i].length - 1] == '|' && parsedUrl[i] == parsedModel[i].replace(/\|/g, '')) {
+                    return result
+                } else if(parsedModel[i].charAt(0) == ':') {
                     const data = parsedUrl[i].split('=')
                     if(parsedModel[i].substr(1) == data[0]) {
                         result.params[data[0]] = data[1]
@@ -47,7 +49,9 @@ function parse(model, url) {
         var result = {success: true, params: {}}
         if(parsedModel.length == parsedUrl.length) {
             for(i = 0; i < parsedModel.length; i++) {
-                if(parsedModel[i].charAt(0) == ':') {
+                if(parsedModel[i].charAt(0) == '|' && parsedModel[i][parsedModel[i].length - 1] == '|' && parsedUrl[i] == parsedModel[i].replace(/\|/g, '')) {
+                    return result
+                } else if(parsedModel[i].charAt(0) == ':') {
                     if(parsedUrl[i] == "") {
                         result.success = false
                         return result                    

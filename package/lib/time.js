@@ -1,8 +1,8 @@
 function time() {
     d = new Date()
-    hours = format_two_digits(d.getHours())
-    minutes = format_two_digits(d.getMinutes())
-    seconds = format_two_digits(d.getSeconds())
+    hours = format_two_digits(d.getUTCHours())
+    minutes = format_two_digits(d.getUTCMinutes())
+    seconds = format_two_digits(d.getUTCSeconds())
     return `${hours}:${minutes}:${seconds}`
 }
 

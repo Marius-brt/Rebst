@@ -2,9 +2,9 @@
 
 > Un moyen simple de créer une API Rest facilement et rapidement
 
-* Super simple d'utilisation
-* Restfull
-* Erreurs automatiques
+* Simple et rapide
+* Gratuit
+* Open Source
 
 [GitHub](https://github.com/Marius-brt/Rebst)
 [Commencer](/fr/start)

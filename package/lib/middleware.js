@@ -28,14 +28,14 @@ module.exports = exports = (router, settings, emitter) => {
     request(req, res, settings)
     bodyParser(req, res, settings.bodyParser)
     if(settings.cors.enabled) cors(req, res, settings.cors)
-    response(req, res, settings)
-    if(settings.console) Console(req, res)
     for (let addon of exports.addons) {
       addon(req, res)
     }
     req.on('end', () => {
       router.route(req, res)
     })
+    response(req, res, settings)
+    if(settings.console) Console(req, res)
   }
 }
 

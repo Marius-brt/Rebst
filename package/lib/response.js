@@ -4,6 +4,7 @@ const httpMes = require('http').STATUS_CODES
 
 const time = require('./time')
 const resId = require('./middlewares/resId')
+const encrypt = require('./middlewares/encrypt')
 
 module.exports = exports = (req, res, settings) => {
     res.rebst = (params = {status: 200, data: null, headers: null}) => {
@@ -40,7 +41,7 @@ module.exports = exports = (req, res, settings) => {
     res.send = (msg = '') => {
         if(!res.finished) {
             resId(res, settings.resId)
-            res.write(msg)
+            res.write(Encrypt(msg, settings.encrypt))
             res.end()
         }
     }
@@ -48,7 +49,7 @@ module.exports = exports = (req, res, settings) => {
         if(!res.finished) {
             resId(res, settings.resId)
             res.writeHead(params.status || 200, { 'Content-Type': 'text/html' })
-            res.write(params.html || '')
+            res.write(Encrypt(params.html, settings.encrypt) || '')
             res.end()
         }
     }
@@ -63,10 +64,7 @@ module.exports = exports = (req, res, settings) => {
 
 function Encrypt(text, settings) {
     if(settings.enabled) {
-        const Cryptr = require('cryptr')
-        const cryptr = new Cryptr(settings.key)
-        const crypted = cryptr.encrypt(text)
-        return crypted;
+        return encrypt.encrypt(settings.key, text)
     } else {
         return text
     }

@@ -8,7 +8,7 @@ $ npm install rebst
 ```
 
 # Initialiser
-Pour initialiser Rebst, ajouter ceci à votre application :
+Pour créer votre application, importer Rebst dans votre script et initialiser votre app comme ceci :
 ```javascript
 const rebst = require('rebst')
 const app = rebst.init()

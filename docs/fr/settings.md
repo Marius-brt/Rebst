@@ -1,8 +1,7 @@
 # Options
-Vous pouvez ajouter des options à Rebst avec `rebst.init()`
+Vous pouvez ajouter des options à Rebst dans les paramètres de la fonction `rebst.init()` sous forme d'Objet
 
-> Chaque option est optionnelle
-
+#### Exemple
 ```javascript
 const app = rebst.init({
     console: true,
@@ -10,7 +9,9 @@ const app = rebst.init({
 })
 ```
 
-## Port
+## Serveur
+
+### Port
 
 - Type: `Int`
 - Défaut: `3000`
@@ -23,7 +24,66 @@ rebst.init({
 })
 ```
 
-## Version
+### Local IP
+
+- Type: `String`
+- Défaut: `localhost`
+
+Définit l'adresse IP locale de votre application. Pratique pour la tester avec tous les appareils connecter au même réseaux.
+Si vous utilisez ce paramètre, veuillez mettre l'adresse IP locale de la machine sur laquel tourne votre application
+
+```javascript
+rebst.init({
+    localIp: '192.168.0.20'
+})
+```
+
+### Protocol
+
+- Type: `String`
+- Défaut: `http`
+
+Définit le protocole de votre application. Les protocoles supportés par Rebst sont `HTTP` et `HTTPS`. Si vous utilisez le protocole `HTTPS`, veuillez égalemment référencez vos certificats
+avec l'option [httpsOpt](#Https-Opt)
+
+```javascript
+rebst.init({
+    protocol: 'https'
+})
+```
+
+### Https Opt
+
+- Type: `Object`
+- Défaut: `null`
+
+Permet de référencer la clé et le certificat pour le protocole `HTTPS`
+
+```javascript
+rebst.init({
+    httpsOpt: {
+        key: 'https/key.pem',
+        cert: 'https/cert.pem'
+    }
+})
+```
+
+### Blacklist
+
+- Type: `Array`
+- Défaut: `null`
+
+Définit les IP qui n'ont pas le droits d'accéder à votre application et leurs renvoie une erreur 403
+
+```javascript
+rebst.init({
+    blacklist: ['127.0.0.1']
+})
+```
+
+## Réponse
+
+### Version
 
 - Type: `String`
 - Défaut: `null`
@@ -36,12 +96,12 @@ rebst.init({
 })
 ```
 
-## Time
+### Time
 
 - Type: `Boolean`
 - Défaut: `false`
 
-Affiche ou non l'heure à laquelle la réponse a été envoyée (par rapport au fuseau horaire de votre serveur)
+Quand elle est activée, elle affiche l'heure à laquelle la réponse à été traitée. (UTC)
 
 ```javascript
 rebst.init({
@@ -49,7 +109,7 @@ rebst.init({
 })
 ```
 
-## Format
+### Format
 
 - Type: `String`
 - Défaut: `json`
@@ -62,7 +122,7 @@ rebst.init({
 })
 ```
 
-## Payload
+### Payload
 
 - Type: `Object`
 - Défaut: `null`
@@ -77,7 +137,7 @@ rebst.init({
 })
 ```
 
-## Console
+### Console
 
 - Type: `Boolean`
 - Défaut: `true`
@@ -87,5 +147,85 @@ Active ou non la console. Lorsqu'elle est activée, un bilan de chaque réponse 
 ```javascript
 rebst.init({
     console: true
+})
+```
+
+### Headers
+
+- Type: `Object`
+- Défaut: `null`
+
+Cette option vous permais d'ajouter des headers pour chacune des réponses renvoyés par votre application
+
+```javascript
+rebst.init({
+    headers: {
+        'Header-Name': 'Header-Value'
+    }
+})
+```
+
+## Plugins
+
+### Cors
+
+- Type: `Object`
+- Défaut: `disabled`
+
+Ce plugin vous permet d'utiliser Cors sans avoir une seule ligne de code à faire. Pour apprendre à utiliser ce plugin, cliquez [ici]()
+
+```javascript
+rebst.init({
+    enabled: true,
+    origin: '*',
+    methods: 'GET, POST, PUT, PATCH, DELETE',
+    exposedHeaders: [],
+    allowedHeaders: [],
+    credentials: false,
+    maxAge: 10
+})
+```
+
+### Body Parser
+
+- Type: `Object`
+- Défaut: `disabled`
+
+Ce plugin vous permet de récupérer et de transformer le body de la requête quand cela est possible. Pour apprendre à utiliser ce plugin, cliquez [ici]()
+
+```javascript
+rebst.init({
+    enabled: true,
+    bodyReqErr: false
+})
+```
+
+### Res ID
+
+- Type: `Object`
+- Défaut: `disabled`
+
+Ce plugin donne un ID unique à chaque réponse. Pour apprendre à utiliser ce plugin, cliquez [ici]()
+
+```javascript
+rebst.init({
+    enabled: true,
+    type: 'body',
+    headerName: 'Res-Id'
+})
+```
+
+### Encrypt
+
+- Type: `Object`
+- Défaut: `disabled`
+
+Ce plugin permet d'encrypter la réponse. Il utilise le package `cryptr`. Il est déconseillez d'utiliser à l'heure actuelle ce plugin si votre API est déjà publique car `cryptr` 
+semble avoir un système d'encryptage insuffisant. Ce problème sera régler d'ici peu. Pour apprendre à utiliser ce plugin, cliquez [ici]()
+
+```javascript
+rebst.init({
+    enabled: true,
+    key: 'grdsg4d451s1f5sf6sf4s6f'
 })
 ```

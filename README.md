@@ -1,7 +1,9 @@
 <p align="center">
     <a href="https://github.com/Marius-brt/Rebst">
-        <img src="logo.png" alt="Logo" width="150">
+        <img src="logo.png" alt="Logo" width="125">
     </a>
+    <br>
+    <span style="font-weight:600; font-size: 50px; color: #ff9999">Rebst</span>
     <p align="center">
         <br />
         <a href="https://www.npmjs.com/package/rebst">
@@ -32,6 +34,19 @@
     </p>
 </p>
 
+<br>
+
+## Advantages
+
+* Super easy to use
+* Middleware
+* Restfull
+* Plugins
+* Console
+
+## Example
+
+**API**
 
 ```javascript
 const rebst = require('rebst')
@@ -48,16 +63,26 @@ app.get('/', (req, res) => {
 })
 ```
 
-# Features
-    
-* Super easy to use
-* Middleware
-* Restfull
-* Automatic error response
-* Console
+**Response of the request to the url** `localhost:3000`
+```json
+{
+    "success": true,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "username": "username"
+    }
+}
+```
 
-# License
+## Donate
+
+If you love Rebst and want to support the project, you can make a donation [here](https://www.patreon.com/mariusbrt)
+
+## License
+
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)
+
 <p align="center">
     <br/>
     <br/>    

@@ -2,8 +2,6 @@
     <a href="https://github.com/Marius-brt/Rebst">
         <img src="logo.png" alt="Logo" width="125">
     </a>
-    <br>
-    <span style="font-weight:600; font-size: 50px; color: #ff9999">Rebst</span>
     <p align="center">
         <br />
         <a href="https://www.npmjs.com/package/rebst">

@@ -3,18 +3,18 @@ var jsonxml = new Parser()
 const httpMes = require('http').STATUS_CODES
 
 const time = require('./time')
-const resId = require('./middlewares/resId')
 const encrypt = require('./middlewares/encrypt')
 
 module.exports = exports = (req, res, settings) => {
-    res.rebst = (params = {status: 200, data: null, headers: null}) => {
+    res.rebst = (params = {status: 200, data: null, headers: null, bpEncrypt: false}) => {
         if(!res.finished) {
             const status = params.status || 200
             const format = settings.format.toLowerCase()
+            const idType = settings.resId.type.toLowerCase()
             var result = {
                 success: status < 400 ? true : false,
                 message: httpMes[status],
-                id: resId(res, settings.resId),
+                id: idType == 'both' || idType == 'body' && settings.resId.enabled ? res.id : null,
                 time: settings.time ? time() : null,
                 version: settings.version,
                 payload: settings.payload,
@@ -30,40 +30,42 @@ module.exports = exports = (req, res, settings) => {
             }
             res.writeHead(status, { 'Content-Type': `application/${format}` })
             if(format == 'xml') {
-                res.write(Encrypt(jsonxml.parse(result), settings.encrypt))
+                res.write(Encrypt(jsonxml.parse(result), params.bpEncrypt, settings.encrypt))
             } else {
-                res.write(Encrypt(JSON.stringify(result), settings.encrypt))
+                res.write(Encrypt(JSON.stringify(result), params.bpEncrypt, settings.encrypt))
             }        
             res.end()
             return result
         }
     }
-    res.send = (msg = '') => {
-        if(!res.finished) {
-            resId(res, settings.resId)
-            res.write(Encrypt(msg, settings.encrypt))
+    res.send = (msg = '', bpEncrypt = false) => {
+        if(!res.finished) {            
+            res.write(Encrypt(msg, bpEncrypt, settings.encrypt))
             res.end()
         }
     }
-    res.render = (params = {status: 200, html: ''}) => {
+    res.render = (params = {status: 200, html: '', bpEncrypt: false}) => {
         if(!res.finished) {
-            resId(res, settings.resId)
             res.writeHead(params.status || 200, { 'Content-Type': 'text/html' })
-            res.write(Encrypt(params.html, settings.encrypt) || '')
+            res.write(Encrypt(params.html, params.bpEncrypt, settings.encrypt) || '')
             res.end()
         }
     }
     res.redirect = (url, status = 302) => {
         if(!res.finished) {
-            resId(res, settings.resId)
-            res.writeHead(status,  {Location: url})
+            res.writeHead(status,  { Location: url })
             res.end()
         }
     }
+    res.tea = () => {
+        res.rebst({
+            status: 418
+        })
+    }
 }
 
-function Encrypt(text, settings) {
-    if(settings.enabled) {
+function Encrypt(text, bypass, settings) {
+    if(settings.enabled && !bypass) {
         return encrypt.encrypt(settings.key, text)
     } else {
         return text

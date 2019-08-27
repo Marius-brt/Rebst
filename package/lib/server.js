@@ -53,17 +53,17 @@ var settings = {
     cors: corsSettings,
     bodyParser: bodyParserSettings,
     resId: resIdSettings,
-    encrypt: encryptSettings
+    encrypt: encryptSettings,
+    log: false
 }
 
 class Server extends eventEmitter {
     init(params = settings) {
-        this.emit('init')
         settings = Object.assign(settings, params)
         settings.cors = Object.assign(corsSettings, params.cors)
         settings.bodyParser = Object.assign(bodyParserSettings, params.bodyParser)
         settings.resId = Object.assign(resIdSettings, params.resId)
-        settings.encrypt = Object.assign(encryptSettings, params.encrypt)        
+        settings.encrypt = Object.assign(encryptSettings, params.encrypt)
 
         if(formatSupported.includes(settings.format.toLowerCase())) {
             const curRouter = new router
@@ -79,10 +79,10 @@ class Server extends eventEmitter {
                     }
                     server = require('https').createServer(opt, middleware(curRouter, settings, this))
                 } else {
-                    printer('Not all the parameters of the HTTPS protocol have been entered !', true)
+                    printer('Not all the parameters of the HTTPS protocol have been entered !', true, settings.log)
                 }
             } else {
-                printer(`The ${settings.protocol} protocol does not exist or is not supported by Rebst !`, true)
+                printer(`The ${settings.protocol} protocol does not exist or is not supported by Rebst !`, true, settings.log)
             }
             server.listen(settings.port, settings.localIp, () => {
                 console.log(`Rebst > The application runs on port ${settings.port}`.green)
@@ -93,19 +93,20 @@ class Server extends eventEmitter {
                     settings.encrypt.key = encrypt.key()
                     console.log(`Encryption key : ${settings.encrypt.key}`.yellow)
                 }
+                this.emit('started')
             }).on('error', (err) => {
-                errorHandler(err, settings.port, settings.localIp)
+                errorHandler(err, settings.port, settings.localIp, settings.log)
             })
             return curRouter
         } else {
-            printer('Response format invalid !', true)
+            printer('Response format invalid !', true, settings.log)
         }
     }
     use(newMiddleware) {
         middleware.use(newMiddleware)
     }
     err(err = '', fatal = false) {
-        printer(err, fatal)
+        printer(err, fatal, settings.log)
     }
     needBody() {
         middleware.needBody()

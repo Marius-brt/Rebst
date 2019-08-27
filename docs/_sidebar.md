@@ -1,9 +1,18 @@
-* [Home](/)
-* [Start](/start.md)
-* [Settings](/settings.md)
-* [Routing](/routing.md)
-    * [Responses](/responses.md)
-    * [Params](/params.md)
-* [Middleware](/middleware.md)
-    * [Writing middleware](/create-middleware.md)
-* [Contact](/contact.md)
+- Getting Started
+    * [Installation](/installation.md)
+    * [Get Started](/get-started.md)
+    * [Basic Routing](/basic-routing.md)
+
+- Rebst
+    * [Rebst()](rebst.md)
+    * [Application](application.md)
+
+- HTTP Request
+    * [Request](request.md)
+    * [Response](response.md)
+
+- Addon
+    * [Plugins](plugins.md)
+    * [Middleware](middleware.md)
+
+* [**Contact**](/contact.md)

@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <title>Rebst</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="description" content="Description">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Rebst is a simple way to create Rest APIs easily and quickly">
     <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <meta property="og:title" content="Rebst">
     <meta property="og:description" content="A simple way to create Rest APIs easily and quickly">
-    <meta property="og:image" content="https://www.rebst.cf/logo2.png">
+    <meta property="og:image" content="assets/img/logo.png">
     <meta property="og:url" content="https://www.rebst.cf/">
 
     <meta name="twitter:title" content="Rebst">
     <meta name="twitter:description" content="A simple way to create Rest APIs easily and quickly">
-    <meta name="twitter:image" content="https://www.rebst.cf/logo2.png">
+    <meta name="twitter:image" content="assets/img/logo.png">
     <meta name="twitter:card" content="summary_large_image">
   </head>
   <body>
-    <nav>
-      <a href="#/">EN</a>
-      <a href="#/fr/">FR</a>
-    </nav>
-    <div data-app id="main">Please wait...</div>
+    <div data-app id="main">Loading...</div>
     <script>
       window.$docsify = {
         el: '#main',
         coverpage: true,
         loadSidebar: true,
+        loadNavbar: true,
         plugins: [
           function(hook) {
             var footer = [
@@ -44,9 +42,9 @@
           }
         ],
         coverpage: ['/', '/fr/'],
-        themeColor: '#646ecb',
+        themeColor: '#ff9999',
         auto2top: true,
-        subMaxLevel: 2,
+        subMaxLevel: 3,
         search: {
           noData: {
             '/fr/': 'Aucun résultats !',
@@ -57,10 +55,51 @@
             '/fr/': 'Rechercher',
             '/': 'Search'
           }
+        },
+        pagination: {
+          previousText: 'previous',
+          nextText: 'next',
+          crossChapter: true
+        },
+        name: '<p style="font-weight:bold; font-size: 30px; margin: 30px 0">Rebst</p>',
+        copyCode: {
+          buttonText : 'Copy to clipboard',
+          errorText  : 'Error',
+          successText: 'Copied'
+        },
+        'flexible-alerts': {
+            style: 'callout',
+            note: {
+              label: "Note"
+            },
+            tip: {
+              label: {
+                '/': 'Tip',
+                '/fr/': 'Astuce'
+              }
+            },
+            warning: {
+              label: {
+                '/': 'Warning',
+                '/fr/': 'Attention'
+              }
+            },
+            danger: {
+              label: "Danger"
+            }
+        },
+        notFoundPage: {
+          '/': '404.md',
+          '/fr/': 'fr/404.md'
         }
       }
     </script>
     <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
     <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="https://unpkg.com/docsify-copy-code@2"></script>
+    <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-html.min.js"></script>
   </body>
 </html>

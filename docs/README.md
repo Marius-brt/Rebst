@@ -1,5 +1,8 @@
-# Presentation
-Rebst is a NodeJs framework that allows you to easily and quickly create a Rest API
+> An incredible NodeJs package to create Restfull APIs easily and quickly
+
+## Example
+
+**API**
 
 ```javascript
 const rebst = require('rebst')
@@ -16,15 +19,22 @@ app.get('/', (req, res) => {
 })
 ```
 
-# Advantages
-* Very easy to use
-* Middleware system
-* Restfull
-* Automatic errors 
-* Console
+**Response of the request to the url** `localhost:3000`
+```json
+{
+    "success": true,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "username": "username"
+    }
+}
+```
 
-# Author
-I'm Marius, a 16-year-old French developer. I am the creator of `Rebst`
+## Donate
 
-# License
+If you love Rebst and want to support the project, you can make a donation [here](https://www.patreon.com/mariusbrt)
+
+## License
+
 You can read the license [here](https://github.com/Marius-brt/Rebst/blob/master/LICENSE)

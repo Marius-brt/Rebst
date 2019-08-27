@@ -3,6 +3,8 @@ const response = require('./response')
 const Console = require('./console')
 const request = require('./request')
 const cors = require('./middlewares/cors')
+const resId = require('./middlewares/resId')
+const cookieParser = require('./middlewares/cookieParser')
 
 module.exports = exports = (router, settings, emitter) => {
   return (req, res) => {
@@ -25,8 +27,11 @@ module.exports = exports = (router, settings, emitter) => {
       }
     }
 
+    res.id = resId(res, settings.resId)
+
     request(req, res, settings)
     bodyParser(req, res, settings.bodyParser)
+    cookieParser(req, res)
     if(settings.cors.enabled) cors(req, res, settings.cors)
     for (let addon of exports.addons) {
       addon(req, res)
@@ -35,7 +40,7 @@ module.exports = exports = (router, settings, emitter) => {
       router.route(req, res)
     })
     response(req, res, settings)
-    if(settings.console) Console(req, res)
+    if(settings.console) Console(req, res, settings.log)
   }
 }
 

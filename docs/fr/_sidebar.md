@@ -1,9 +1,6 @@
-* [Accueil](/fr/)
-* [Commencer](/fr/start.md)
-* [Options](/fr/settings.md)
-* [Routing](/fr/routing.md)
-    * [Reponses](/fr/responses.md)
-    * [Params](/fr/params.md)
-* [Middleware](/fr/middleware.md)
-    * [Créer un middleware](/fr/create-middleware.md)
+- Getting Started
+    * [Installation](/fr/installation.md)
+    * [Initialiser](/fr/initialize.md)
+    * 
+
 * [Contact](/fr/contact.md)

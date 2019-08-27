@@ -1,0 +1,61 @@
+blockquote code {
+    font-weight: 500;
+}
+
+/****** Cover Page ******/
+section.cover {
+    padding: 100px 0;
+    height: auto;
+    min-height: 100vh;
+    background: url('../img/Background.png') no-repeat !important;
+    background-size: cover !important;
+}
+
+section.cover .button{
+    border-radius: 0 !important;
+    background: rgba(255, 255, 255, 0) !important;
+    color: #ff9999 !important;
+    font-weight: 600;
+    transition: 0.3s !important;
+}
+
+section.cover .button:hover{
+    transition: 0.3s !important;
+    background: #ff9999 !important;
+    color: #fff !important;
+    box-shadow: 0px 0px 20px #ff9999;
+}
+
+.language-selector {
+    color: #fff !important;
+}
+
+.language-selector:hover {
+    color: #fff !important;
+}
+
+.language-selector.active {
+    color: #fff !important;
+    border-color: #fff !important;
+}
+
+/****** Sidebar ******/
+
+.sidebar-nav li {
+    font-weight: 800;
+}
+
+/****** 404 ******/
+
+.not-found-container {
+    margin-bottom: 125px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 125px;
+}
+
+.not-found-container p {
+    margin-top: 50px;
+    font-size: 22px;
+    font-weight: bold;
+}

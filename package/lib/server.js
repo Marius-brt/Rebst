@@ -109,19 +109,39 @@ class Server extends eventEmitter {
         middleware.needBody()
     }
     get(url, callback) {
-        // if(url.includes('https'))
-        const https = require('https');
-        https.get(url, (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-            data += chunk;
-        });
-        resp.on('end', () => {
-            callback(data)
-        });
-        }).on("error", (err) => {
-            console.log("Error: " + err.message);
-        });
+        const protocol = new URL(url).protocol;
+        switch(protocol) {
+            case 'https:':
+                const https = require('https');
+                https.get(url, (resp) => {
+                let data = '';
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+                resp.on('end', () => {
+                    callback(data)
+                });
+                }).on("error", (err) => {
+                    console.log("Error: " + err.message);
+                });
+                break
+            case 'http:':
+                const http = require('http')
+                http.get(url, (resp) => {
+                let data = '';
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+                resp.on('end', () => {
+                    callback(data)
+                });
+                }).on("error", (err) => {
+                    console.log("Error: " + err.message);
+                });
+            default:
+                printer(`The protocol ${protocol} is not supported by Rebst`, true, settings.log)
+                break
+        }
     }
 
     // Plugins

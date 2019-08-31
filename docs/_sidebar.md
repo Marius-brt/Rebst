@@ -1,18 +1,18 @@
 - Getting Started
-    * [Installation](/installation.md)
-    * [Get Started](/get-started.md)
-    * [Basic Routing](/basic-routing.md)
+    * [Installation](/en/installation.md)
+    * [Get Started](/en/get-started.md)
+    * [Basic Routing](/en/basic-routing.md)
 
 - Rebst
-    * [Rebst()](rebst.md)
-    * [Application](application.md)
+    * [Rebst()](/en/rebst.md)
+    * [Application](/en/application.md)
 
 - HTTP Request
-    * [Request](request.md)
-    * [Response](response.md)
+    * [Request](/en/request.md)
+    * [Response](/en/response.md)
 
 - Addon
-    * [Plugins](plugins.md)
-    * [Middleware](middleware.md)
+    * [Plugins](/en/plugins.md)
+    * [Middleware](/en/middleware.md)
 
-* [**Contact**](/contact.md)
+* [**Contact**](/en/contact.md)

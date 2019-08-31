@@ -1,5 +1,13 @@
 > An incredible NodeJs package to create Restfull APIs easily and quickly
 
+## Advantages
+
+* Super easy to use
+* Middleware
+* Restfull
+* Plugins
+* Console
+
 ## Example
 
 **API**

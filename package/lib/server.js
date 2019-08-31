@@ -10,7 +10,6 @@ const printer = require('./errorPrinter')
 const formatSupported = ['json', 'xml', 'html']
 
 var corsSettings = {
-    enabled: false,
     origin: '*',
     methods: 'GET,POST,PUT,PATCH,DELETE,COPY,HEAD,OPTIONS,LINK,UNLINK,PURGE,LOCK,UNLOCK,PROPFIND,VIEW',
     exposedHeaders: [],
@@ -20,8 +19,7 @@ var corsSettings = {
 }
 
 var bodyParserSettings = {
-    enabled: false,
-    bodyReqErr: false
+    unsupportedErr: false
 }
 
 var resIdSettings = {
@@ -31,7 +29,6 @@ var resIdSettings = {
 }
 
 var encryptSettings = {
-    enabled: false,
     key: ''
 }
 
@@ -50,8 +47,6 @@ var settings = {
     headers: {},
     console: true,
     blackList: [],
-    cors: corsSettings,
-    bodyParser: bodyParserSettings,
     resId: resIdSettings,
     encrypt: encryptSettings,
     log: false
@@ -60,8 +55,6 @@ var settings = {
 class Server extends eventEmitter {
     init(params = settings) {
         settings = Object.assign(settings, params)
-        settings.cors = Object.assign(corsSettings, params.cors)
-        settings.bodyParser = Object.assign(bodyParserSettings, params.bodyParser)
         settings.resId = Object.assign(resIdSettings, params.resId)
         settings.encrypt = Object.assign(encryptSettings, params.encrypt)
 
@@ -102,18 +95,47 @@ class Server extends eventEmitter {
             printer('Response format invalid !', true, settings.log)
         }
     }
-    use(newMiddleware) {
-        middleware.use(newMiddleware)
+    use(path) {
+        middleware.use(path)
     }
-    err(err = '', fatal = false) {
-        printer(err, fatal, settings.log)
-    }
-    needBody() {
-        middleware.needBody()
+    error(message = '', fatal = false) {
+        printer(message, fatal, settings.log)
     }
     encryptKey() {
         const encrypt = require('./middlewares/encrypt')
         return encrypt.key()
+    }
+    needBody() {
+        middleware.needBody()
+    }
+    get(url, callback) {
+        // if(url.includes('https'))
+        const https = require('https');
+        https.get(url, (resp) => {
+        let data = '';
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+        resp.on('end', () => {
+            callback(data)
+        });
+        }).on("error", (err) => {
+            console.log("Error: " + err.message);
+        });
+    }
+
+    // Plugins
+    cors(options = corsSettings) {
+        middleware.enablePlugin(require('./middlewares/cors'), 'both', 'end', options, corsSettings)
+    }
+    bodyParser(options = bodyParserSettings) {
+        middleware.enablePlugin(require('./middlewares/bodyParser'), 'both', 'start', options, bodyParserSettings)
+    }
+    resId(options = resIdSettings) {
+        middleware.enableStaticPlugin('resId', options, resIdSettings)
+    }
+    encrypt(options = encryptSettings) {
+        middleware.enableStaticPlugin('encrypt', options, encryptSettings)
     }
 }
 

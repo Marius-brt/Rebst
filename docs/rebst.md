@@ -30,14 +30,24 @@ rebst.on('started', () => {
 ## Methods
 
 ### rebst.init()
-> rebst.init(settings)
+> rebst.init([options])
 
 This method is used to create an application
 
-#### Arguments :
-| Arguments | Type     |                               Description                              | Default |
-|:---------:|----------|:----------------------------------------------------------------------:|---------|
-|  settings | `Object` | The parameters of the application. See the list of parameters [here]() |   null  |
+#### Options :
+|  Options  |    Type   | Description |  Default  |
+|:---------:|:---------:|:-----------:|:---------:|
+|  localIp  |  `String` |             | localhost |
+|    port   |   `Int`   |             |    3000   |
+|  protocol |  `String` |             |    http   |
+|  httpsOpt |  `Object` |             |           |
+|  version  |  `String` |             |    null   |
+|  payload  |  `Object` |             |    null   |
+|    time   | `Boolean` |             |   false   |
+|   format  |  `String` |             |    json   |
+|  headers  |  `Object` |             |    null   |
+|  console  | `Boolean` |             |    true   |
+| blacklist |  `Array`  |             |    null   |
 
 #### Example :
 ```javascript
@@ -47,7 +57,7 @@ const app = rebst.init({
 ```
 
 ### rebst.use()
-> rebst.init(path)
+> rebst.use(path)
 
 This method allows you to add middleware to Rebst
 
@@ -63,7 +73,7 @@ rebst.use(myMiddleware)
 ```
 
 ### rebst.err()
-> rebst.init(error, fatal)
+> rebst.err(error, fatal)
 
 This method allows you to display an error in the console. This error may be fatal or not and therefore stop your application or not
 

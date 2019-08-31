@@ -1,6 +1,7 @@
-module.exports = { encrypt, decrypt, key }
+module.exports = { encrypt, key, checkKey }
 
 const crypto = require('crypto')
+const printer = require('../errorPrinter')
 
 function encrypt(key, text) {
     let iv = crypto.randomBytes(16);
@@ -10,7 +11,7 @@ function encrypt(key, text) {
     return iv.toString('hex') + ':' + encrypted.toString('hex');
 }
    
-function decrypt(key, text) {
+/*function decrypt(key, text) {
     let textParts = text.split(':');
     let iv = Buffer.from(textParts.shift(), 'hex');
     let encryptedText = Buffer.from(textParts.join(':'), 'hex');
@@ -18,11 +19,20 @@ function decrypt(key, text) {
     let decrypted = decipher.update(encryptedText);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return decrypted.toString();
-}
+}*/
 
 function key() {
     var result = '';
     var chars = '0123456789abcdefghijklmnopqrstuvwxyz'
     for (var i = 32; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result
+}
+
+function checkKey(key, useLog = false) {
+    if(key.length != 32) {
+        printer('The key for the encrypt plugin must be 32 characters long', true, useLog)
+        return false
+    } else {
+        return true
+    }
 }

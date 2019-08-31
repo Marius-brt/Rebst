@@ -14,7 +14,7 @@ module.exports = (err, fatal = false, useLog = false) => {
             })]
         })
         logger.error(`"${time()} > ${err}"`)
-        logger.on('finish', function (info) {
+        logger.on('finish', () => {
             if(fatal) process.exit()
         });
     } else {

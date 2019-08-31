@@ -27,16 +27,16 @@ section.cover .button:hover{
 }
 
 .language-selector {
-    color: #fff !important;
+    color: #000 !important;
 }
 
 .language-selector:hover {
-    color: #fff !important;
+    color: #000 !important;
 }
 
 .language-selector.active {
-    color: #fff !important;
-    border-color: #fff !important;
+    color: #000 !important;
+    border-color: #000 !important;
 }
 
 /****** Sidebar ******/
